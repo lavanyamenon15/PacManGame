@@ -1,4 +1,4 @@
-public enum TOPIC {
+public enum Topic{
     SELF_HELP,
     TECHNOLOGY, 
     PHILOSOPHY,
@@ -9,5 +9,9 @@ public enum TOPIC {
     LLM,
     ALGORITHMS,
     MACHINE_LEARNING,
-    AI
+    AI,
+    MEMOIR,
+    BIOGRAPHY,
+    AUTOBIOGRAPHY
 }
+
