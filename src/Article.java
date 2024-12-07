@@ -7,10 +7,8 @@ public class Article extends NonFictionBook{
     private String newsPlatform;
     private URL url;
 
-    public Article(String title, ArrayList<Author> authors, String synopsis, Date datePublished, ArrayList<Topic> topic, String newsPlatform, URL url){
+    public Article(String title, ArrayList<Author> authors, String synopsis, Date datePublished, ArrayList<Topic> topic){
         super(title, authors, synopsis, datePublished, topic);
-        this.newsPlatform = newsPlatform;
-        this.url = url;
     }
 
     public String getNewsPlatform() {
@@ -19,6 +17,14 @@ public class Article extends NonFictionBook{
 
     public URL getURL() {
         return url;
+    }
+
+    public void setNewsPlatform(String newsPlatform) {
+        this.newsPlatform = newsPlatform;
+    }
+
+    public void setURL(URL url) {
+        this.url = url;
     }
 
     @Override

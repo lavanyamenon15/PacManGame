@@ -222,7 +222,7 @@ public class App {
 
     // EFFECT: prompts the user to enter the journal of the item they have read
     static String getJournal(){
-        String getJournalString = "\nWhat is the journal that the paper was published in? (enter N/A if this does not apply)\n";
+        String getJournalString = "\nWhat is the journal that the paper was published in?\n";
         System.out.println(getJournalString);
 
         while(true){
@@ -237,7 +237,7 @@ public class App {
 
     // EFFECT: prompts the user to enter the conference of the item they have read
     static String getConference(){
-        String getConferenceString = "\nWhat conference is associated with the paper? (enter N/A if this does not apply)\n";
+        String getConferenceString = "\nWhat conference is associated with the paper?\n";
         System.out.println(getConferenceString);
 
         while(true){
@@ -280,28 +280,115 @@ public class App {
         }
     }
 
+    // EFFECTS: checks if the given reading items has the given attribute 
+    static Boolean hasAttribute(String attributeName, String readingItemType){
+        System.out.println("Is there a " + attributeName + "associated with this " + readingItemType + "? (Answer with Y or N) \n");
+
+        while(true){
+            try {
+                String hasAttribute = userInput.nextLine();
+                if(hasAttribute == "Y"){
+                    return true;
+                } else if (hasAttribute == "N") {
+                    return false;
+                } else {
+                    System.out.println("\n\n !! Try again: Please answer with Y or N !! \n\n");
+                }
+            } catch (Exception e) {
+                continue;
+            }
+        }
+    }
+
     // EFFECT: prompts the user to enter the article of the item they have read
-    static ReadingItem getArticle(){
-        // TODO
-        return null;
+    static Article getArticle(Article article){
+        String newsPlatform = getNewsPlatform();
+        URL url = getURL();
+        article.setNewsPlatform(newsPlatform);
+        article.setURL(url);
+
+        return article;
     }
 
     // EFFECT: prompts the user to enter the paper of the item they have read
-    static ReadingItem getPaper(){
-        // TODO
-        return null;
+    static Paper getPaperAttributes(Paper paper){
+        String doi = getDOI();
+        String journal; 
+        String conference;
+        paper.setDOI(doi);
+
+        if (hasAttribute("conference", "paper")){
+            conference = getConference();
+            paper.setConference(conference);
+        }
+
+        if (hasAttribute("journal", "paper")){
+            journal = getJournal();
+            paper.setJournal(journal);
+        }
+
+        return paper;
     }
 
-    // EFFECT:  guides the user entering the details of the Non Fiction Book they are logging 
+    // EFFECT: prompts the user to select the type of nonfiction reading item they want to log 
+    static String getTypeOfNonFiction() {
+        System.out.println("What type of non fiction reading item would you like to log? (please enter a number corresponding to an option below)\n" +
+        "1. Non Fiction Book\n"+
+        "2. Academic Paper\n" +
+        "3. Article\n");
+
+        while(true){
+            try {
+                int typeOfNonfiction = userInput.nextInt();
+                switch (typeOfNonfiction) {
+                    case 1:
+                        return "book";
+                    case 2:
+                        return "paper";
+                    case 3:
+                        return "article";
+                    default:
+                        System.out.println("\n\n !! Try again: Please enter a number listed above !! \n\n");
+                }
+            } catch (Exception e) {
+                System.out.println("\n\n !! Try again: Please enter a number !! \n\n");
+                continue;
+            }
+        }
+    }
+
+    // EFFECT: guides the user entering the details of the Non Fiction Book they are logging 
     static ReadingItem getNonFictionBook(){
-        // TODO
-        return null;
+        String readingItemType = getTypeOfNonFiction();
+        String title = getTitle(readingItemType);
+        ArrayList<Author> authors = getAuthors(readingItemType);
+        String synopsis = getSynopsis(readingItemType);
+        Date datePublished = getDatePublished(readingItemType);
+        ArrayList<Topic> topic = getTopic(readingItemType);
+
+        if(readingItemType == "paper"){
+            Paper paper = new Paper(title, authors, synopsis, datePublished, topic);
+            paper = getPaperAttributes(paper);
+            return paper;
+        } else if (readingItemType == "article") {
+            Article article = new Article(title, authors, synopsis, datePublished, topic);
+            article = getArticle(article);
+            return article;
+        } else {
+            return new NonFictionBook(title, authors, synopsis, datePublished, topic);
+        }
     }
 
     // EFFECT: guides the user entering the details of the Fictional Book they are logging 
     static ReadingItem getFictionBook(){
-        // TODO
-        return null;
+        String readingItemType = "book";
+        String title = getTitle(readingItemType);
+        ArrayList<Author> authors = getAuthors(readingItemType);
+        String synopsis = getSynopsis(readingItemType);
+        Date datePublished = getDatePublished(readingItemType);
+        ArrayList<Genre> genre = getGenre();
+
+        return new FictionBook(title, authors, synopsis, datePublished, genre);
     }
 
     // EFFECT: guides the user through selecting what reading item to created
@@ -351,7 +438,7 @@ public class App {
         int menuSelection = displayMenu();
         switch (menuSelection) {
             case 1:
-                getReadingItem();
+                System.out.println(getReadingItem().toString());
                 break;
             default:
                 break;

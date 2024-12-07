@@ -8,7 +8,7 @@ public class Paper extends NonFictionBook{
     private String conference = "";
 
 
-    public Paper(String title, ArrayList<Author> authors, String synopsis, Date datePublished, ArrayList<Topic> topic, String doi){
+    public Paper(String title, ArrayList<Author> authors, String synopsis, Date datePublished, ArrayList<Topic> topic){
         super(title, authors, synopsis, datePublished, topic);
     }
 
