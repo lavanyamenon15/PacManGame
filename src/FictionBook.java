@@ -3,10 +3,10 @@ import java.util.Date;
 
 public class FictionBook extends ReadingItem{
 
-    Genre genre;
+    private Genre genre;
     
-    public FictionBook(String title, ArrayList<Author> author, String synopsis, Date datePublished, Genre genre) {
-        super(title, author,synopsis, datePublished);
+    public FictionBook(String title, ArrayList<Author> authors, String synopsis, Date datePublished, Genre genre) {
+        super(title, authors,synopsis, datePublished);
         this.genre = genre;
     }
 
@@ -15,8 +15,8 @@ public class FictionBook extends ReadingItem{
     }
 
     @Override
-    public String getReadingItemInformation() {
-        // TODO 
-        throw new UnsupportedOperationException("Unimplemented method 'getReadingItemInformation'");
+    public String getSpecificInformation() {
+        String genreString = "Date Published : " + this.genre.toString() + "\n";
+        return genreString;
     }
 }

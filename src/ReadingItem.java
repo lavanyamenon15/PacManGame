@@ -3,14 +3,14 @@ import java.util.Date;
 
 public abstract class ReadingItem {
 
-    String title;
-    ArrayList<Author> author;
-    String synopsis;
-    Date datePublished;
+    private String title;
+    private ArrayList<Author> authors;
+    private String synopsis;
+    private Date datePublished;
 
-    public ReadingItem(String title, ArrayList<Author> author, String synopsis, Date datePublished) {
+    public ReadingItem(String title, ArrayList<Author> authors, String synopsis, Date datePublished) {
         this.title = title;
-        this.author = author;
+        this.authors = authors;
         this.synopsis = synopsis;
         this.datePublished = datePublished;
     }
@@ -21,7 +21,7 @@ public abstract class ReadingItem {
     }
 
     public ArrayList<Author> getAuthor() {
-        return author;
+        return authors;
     }
 
     public Date getDatePublished() {
@@ -39,7 +39,7 @@ public abstract class ReadingItem {
     }
 
     public void setAuthor(ArrayList<Author> newAuthor) {
-        this.author = newAuthor;
+        this.authors = newAuthor;
     }
 
     public void setDatePublished(Date newDatePublished) {
@@ -50,6 +50,28 @@ public abstract class ReadingItem {
         this.synopsis = updatedSynopsis;
     }
 
-    public abstract String getReadingItemInformation();
+    public ArrayList<String>  getAuthorsNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < authors.size() - 1; i++) {
+            names.add(authors.get(i).getName());
+        }
+        return names;
+    }
+
+    public void addAuthor(Author author) {
+        this.authors.add(author);
+    }
+
+    public String getReadingItemInformation() {
+        String titleString = "Book Title : " + getTitle() + "\n";
+        String authorString = "Authors : " + getAuthorsNames() + "\n";
+        String synopsisString = "Synopsis : " + getSynopsis();
+        String datePublishedString = "Date Published : " + getDatePublished().toString() + "\n";
+        String specificInformation = getSpecificInformation();
+
+        return titleString + authorString + datePublishedString + specificInformation + synopsisString;
+    }
+
+    public abstract String getSpecificInformation();
 
 }

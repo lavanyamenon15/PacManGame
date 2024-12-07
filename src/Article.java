@@ -7,8 +7,8 @@ public class Article extends NonFictionBook{
     private String newsPlatform;
     private URL url;
 
-    public Article(String title, ArrayList<Author> author, String synopsis, Date datePublished, Topic topic, String newsPlatform, URL url){
-        super(title, author, synopsis, datePublished, topic);
+    public Article(String title, ArrayList<Author> authors, String synopsis, Date datePublished, Topic topic, String newsPlatform, URL url){
+        super(title, authors, synopsis, datePublished, topic);
         this.newsPlatform = newsPlatform;
         this.url = url;
     }
@@ -22,8 +22,10 @@ public class Article extends NonFictionBook{
     }
 
     @Override
-    public String getReadingItemInformation() {
-        // TODO 
-        throw new UnsupportedOperationException("Unimplemented method 'getReadingItemInformation'");
+    public String getSpecificInformation() {
+        String topicString = "Topic : " + getTopic() + "\n";
+        String newsPlatformString = "News Platform: " + this.newsPlatform + "\n";
+        String urlString = "URL: " + this.url.toString() + "\n";
+        return topicString + newsPlatformString + urlString;
     }
 }
