@@ -69,8 +69,6 @@ public class App {
 
     // EFFECT: prompts the user to enter the authors of the item they have read
     static ArrayList<Author> getAuthors(String readingItemType){
-        // TODO
-
         String howManyAuthors = "How many authors are there for the " + readingItemType + "?";
         System.out.println(howManyAuthors);
         ArrayList<Author> authors = new ArrayList<>();
@@ -115,10 +113,23 @@ public class App {
         }
     }
 
-    // EFFECT: prompts the user to enter the date of the item they have read
+    // EFFECT: prompts the user to enter the date the item they have read was published
+    @SuppressWarnings("deprecation")
     static Date getDatePublished(String readingItemType){
-        // TODO
-        return null;
+        String getDateString = "\n What is the Date the " + readingItemType + " was published? (please enter your answer in YYYY-MM-DD format)\n";
+        System.out.println(getDateString);
+
+        while(true){
+            try {
+                String dateInput = userInput.nextLine();
+                int year = Integer.parseInt(dateInput.substring(0,4));
+                int month = Integer.parseInt(dateInput.substring(5,7));
+                int day = Integer.parseInt(dateInput.substring(8));
+                return new Date(year, month, day);
+            } catch (Exception e) {
+                continue;
+            }
+        }
     }
 
     // EFFECT: prompts the user to enter the genre of the item they have read
