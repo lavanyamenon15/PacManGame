@@ -1,3 +1,6 @@
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class App {
@@ -52,58 +55,145 @@ public class App {
     }
 
     // EFFECT: prompts the user for the title of the item they have read
-    static ReadingItem getTitle(){
+    static String getTitle(String readingItemType){
+        String getTitleString = "\nWhat is the title of the " + readingItemType + "? \n";
+        System.out.println(getTitleString);
+        int wrongInput = 1;
+
+        while(wrongInput == 1){
+            try {
+                String titleInput = userInput.nextLine();
+                return titleInput;
+            } catch (Exception e) {
+                continue;
+            }
+        }
+
         return null;
     }
 
     // EFFECT: prompts the user to enter the authors of the item they have read
-    static ReadingItem getAuthors(){
+    static ArrayList<Author> getAuthors(String readingItemType){
+
         return null;
     }
 
     // EFFECT: prompts the user to enter the synopsis of the item they have read
-    static ReadingItem getSynopsis(){
+    static String getSynopsis(String readingItemType){
+        String getSynopsisString = "\nWhat is the synopsis of the " + readingItemType + "? \n";
+        System.out.println(getSynopsisString);
+        int wrongInput = 1;
+
+        while(wrongInput == 1){
+            try {
+                String synopsisInput = userInput.nextLine();
+                return synopsisInput;
+            } catch (Exception e) {
+                continue;
+            }
+        }
         return null;
     }
 
     // EFFECT: prompts the user to enter the date of the item they have read
-    static ReadingItem getDatePublished(){
+    static Date getDatePublished(String readingItemType){
+        
         return null;
     }
 
     // EFFECT: prompts the user to enter the genre of the item they have read
-    static ReadingItem getGenre(){
+    static Genre getGenre(String readingItemType){
         return null;
     }
 
     // EFFECT: prompts the user to enter the topic of the item they have read
-    static ReadingItem getTopic(){
+    static Topic getTopic(String readingItemType){
         return null;
     }
 
     // EFFECT: prompts the user to enter the DOI of the item they have read
-    static ReadingItem getDOI(){
+    static String getDOI(){
+        String getDOIString = "\nWhat is the doi of the paper? \n";
+        System.out.println(getDOIString);
+        int wrongInput = 1;
+
+        while(wrongInput == 1){
+            try {
+                String DOIInput = userInput.nextLine();
+                return DOIInput;
+            } catch (Exception e) {
+                continue;
+            }
+        }
         return null;
     }
 
 
     // EFFECT: prompts the user to enter the journal of the item they have read
-    static ReadingItem getJournal(){
+    static String getJournal(){
+        String getJournalString = "\nWhat is the journal that the paper was published in? (enter N/A if this does not apply)\n";
+        System.out.println(getJournalString);
+        int wrongInput = 1;
+
+        while(wrongInput == 1){
+            try {
+                String journalInput = userInput.nextLine();
+                return journalInput;
+            } catch (Exception e) {
+                continue;
+            }
+        }
         return null;
     }
 
     // EFFECT: prompts the user to enter the conference of the item they have read
-    static ReadingItem getConference(){
+    static String getConference(){
+        String getConferenceString = "\nWhat conference is associated with the paper? (enter N/A if this does not apply)\n";
+        System.out.println(getConferenceString);
+        int wrongInput = 1;
+
+        while(wrongInput == 1){
+            try {
+                String conferenceInput = userInput.nextLine();
+                return conferenceInput;
+            } catch (Exception e) {
+                continue;
+            }
+        }
         return null;
     }
 
     // EFFECT: prompts the user to enter the news platform of the item they have read
-    static ReadingItem getNewsPlatform(){
+    static String getNewsPlatform(){
+        String getNewsPlatformString = "\nWhat news platform was this article published on? \n";
+        System.out.println(getNewsPlatformString);
+        int wrongInput = 1;
+
+        while(wrongInput == 1){
+            try {
+                String newsPlatformInput = userInput.nextLine();
+                return newsPlatformInput;
+            } catch (Exception e) {
+                continue;
+            }
+        }
         return null;
     }
 
     // EFFECT: prompts the user to enter the url of the item they have read
-    static ReadingItem getURL(){
+    static URL getURL(){
+        String getURL = "\nPlease enter the link for this article. \n";
+        System.out.println(getURL);
+        int wrongInput = 1;
+
+        while(wrongInput == 1){
+            try {
+                URL urlInput = new URL(userInput.nextLine());
+                return urlInput;
+            } catch (Exception e) {
+                continue;
+            }
+        }
         return null;
     }
 
