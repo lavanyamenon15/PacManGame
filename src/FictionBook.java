@@ -3,14 +3,14 @@ import java.util.Date;
 
 public class FictionBook extends ReadingItem{
 
-    private Genre genre;
+    private ArrayList<Genre> genre;
     
-    public FictionBook(String title, ArrayList<Author> authors, String synopsis, Date datePublished, Genre genre) {
+    public FictionBook(String title, ArrayList<Author> authors, String synopsis, Date datePublished, ArrayList<Genre> genre) {
         super(title, authors, synopsis, datePublished);
         this.genre = genre;
     }
 
-    public Genre getGenre() {
+    public ArrayList<Genre> getGenre() {
         return genre;
     }
 

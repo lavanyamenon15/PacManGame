@@ -133,15 +133,75 @@ public class App {
     }
 
     // EFFECT: prompts the user to enter the genre of the item they have read
-    static Genre getGenre(String readingItemType){
-        // TODO
-        return null;
+    static ArrayList<Genre> getGenre(){
+        String getGenreString = "\n What are the genres of the book?" + 
+        "Please enter a list of numbers corresponding to the list below, separated by commas. (ex. 1,3,6,10) \n" +
+        "1. Fantasy\n" + 
+        "2. Historical Fiction\n" +
+        "3. Literary_Fiction\n" +
+        "4. Drama\n" +
+        "5. Young_Adult\n" +
+        "6. Classic\n" +
+        "7. Romance\n" +
+        "8. Thriller\n" +
+        "9. Comedy\n" +
+        "10. Poetry\n" +
+        "11. Mystery\n" +
+        "12. Science_Fiction";
+
+        System.out.println(getGenreString);
+
+        while(true){
+            try {
+                String genreInput = userInput.nextLine();
+                String[] genreList = genreInput.split(",");
+                ArrayList<Genre> genreListEnums = new ArrayList<>();
+                for (String genre : genreList) {
+                    genreListEnums.add(Genre.valueOf(genre));
+                }
+                return genreListEnums;
+            } catch (Exception e) {
+                continue;
+            }
+        }
     }
 
     // EFFECT: prompts the user to enter the topic of the item they have read
-    static Topic getTopic(String readingItemType){
-        // TODO
-        return null;
+    static ArrayList<Topic> getTopic(String readingItemType){
+        String getTopicString = "\n What are the topics of the " + readingItemType + "?" +  
+        "Please enter a list of numbers corresponding to the list below, separated by commas. (ex. 1,3,6,10) \n" +
+        "1. Self_Help\n" + 
+        "2. Technology\n" +
+        "3. Philosophy\n" +
+        "4. Religion\n" +
+        "5. Politics\n" +
+        "6. International_Relations\n" +
+        "7. Computer_Science\n" +
+        "8. LLMs\n" +
+        "9. Algorithms\n" +
+        "10. Machine_Learning\n" +
+        "11. AI\n" +
+        "12. Memoir\n" + 
+        "13. Biography\n" +
+        "14. Autobiography\n" +
+        "15. Sports\n" +
+        "16. Activism\n";
+
+        System.out.println(getTopicString);
+
+        while(true){
+            try {
+                String topicInput = userInput.nextLine();
+                String[] topicList = topicInput.split(",");
+                ArrayList<Topic> topicListEnums = new ArrayList<>();
+                for (String topic : topicList) {
+                    topicListEnums.add(Topic.valueOf(topic));
+                }
+                return topicListEnums;
+            } catch (Exception e) {
+                continue;
+            }
+        }
     }
 
     // EFFECT: prompts the user to enter the DOI of the item they have read

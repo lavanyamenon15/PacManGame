@@ -3,14 +3,14 @@ import java.util.Date;
 
 public class NonFictionBook extends ReadingItem{
 
-    Topic topic;
+    ArrayList<Topic> topic;
 
-    public NonFictionBook(String title, ArrayList<Author> authors, String synopsis, Date datePublished, Topic topic) {
+    public NonFictionBook(String title, ArrayList<Author> authors, String synopsis, Date datePublished, ArrayList<Topic> topic) {
         super(title, authors,synopsis, datePublished);
         this.topic = topic;
     }
 
-    public Topic getTopic() {
+    public ArrayList<Topic> getTopic() {
         return topic;
     }
 
