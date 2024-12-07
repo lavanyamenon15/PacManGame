@@ -26,11 +26,9 @@ public class App {
         "2. View your reading log \n" + 
         "Please enter the number corresponding to the menu item you wish to choose"; 
         System.out.println(menu);
-        int wrongInput = 1;
 
         // this will keep looping until the user puts in a valid input (1 or 2) 
-        while (wrongInput == 1) {
-
+        while (true){
             try {
                 int menuSelection = userInput.nextInt();
 
@@ -40,17 +38,14 @@ public class App {
                 } else {
                     System.out.println("\n \n !! Try again: Please enter a number in the menu above !! \n \n");
                     System.out.println(menu);
-                    wrongInput = 1; // loop again
                 }
 
             } catch (Exception e) {
                 System.out.println("\n \n !! Try again : Please enter a number !! \n \n");
                 System.out.println(menu); 
                 userInput.nextLine(); // this clears the input stream so we don't enter an infinite loop
-                wrongInput = 1;// loop again
             }
         }
-        return 0;
 
     }
 
@@ -74,17 +69,43 @@ public class App {
 
     // EFFECT: prompts the user to enter the authors of the item they have read
     static ArrayList<Author> getAuthors(String readingItemType){
+        // TODO
 
-        return null;
+        String howManyAuthors = "How many authors are there for the " + readingItemType + "?";
+        System.out.println(howManyAuthors);
+        ArrayList<Author> authors = new ArrayList<>();
+        int numAuthors;
+
+        while(true){
+            try {
+                numAuthors = userInput.nextInt();
+                break;
+            } catch (Exception e) {
+                System.out.println("\n\n !! Try again: Please enter a number !! \n\n");
+                continue;
+            }
+        }
+
+        while(true) {
+            try {
+                for(int i = 1; i <= numAuthors; i++) {
+                    String i_thAuthorName = "What is the name of Author #" + i;
+                    System.out.println(i_thAuthorName);
+                    authors.add(new Author(i_thAuthorName));
+                }
+                return authors;
+            } catch (Exception e) {
+                continue;
+            }
+        }
     }
 
     // EFFECT: prompts the user to enter the synopsis of the item they have read
     static String getSynopsis(String readingItemType){
         String getSynopsisString = "\nWhat is the synopsis of the " + readingItemType + "? \n";
         System.out.println(getSynopsisString);
-        int wrongInput = 1;
 
-        while(wrongInput == 1){
+        while(true){
             try {
                 String synopsisInput = userInput.nextLine();
                 return synopsisInput;
@@ -92,22 +113,23 @@ public class App {
                 continue;
             }
         }
-        return null;
     }
 
     // EFFECT: prompts the user to enter the date of the item they have read
     static Date getDatePublished(String readingItemType){
-        
+        // TODO
         return null;
     }
 
     // EFFECT: prompts the user to enter the genre of the item they have read
     static Genre getGenre(String readingItemType){
+        // TODO
         return null;
     }
 
     // EFFECT: prompts the user to enter the topic of the item they have read
     static Topic getTopic(String readingItemType){
+        // TODO
         return null;
     }
 
@@ -115,9 +137,8 @@ public class App {
     static String getDOI(){
         String getDOIString = "\nWhat is the doi of the paper? \n";
         System.out.println(getDOIString);
-        int wrongInput = 1;
 
-        while(wrongInput == 1){
+        while(true){
             try {
                 String DOIInput = userInput.nextLine();
                 return DOIInput;
@@ -125,7 +146,6 @@ public class App {
                 continue;
             }
         }
-        return null;
     }
 
 
@@ -133,9 +153,8 @@ public class App {
     static String getJournal(){
         String getJournalString = "\nWhat is the journal that the paper was published in? (enter N/A if this does not apply)\n";
         System.out.println(getJournalString);
-        int wrongInput = 1;
 
-        while(wrongInput == 1){
+        while(true){
             try {
                 String journalInput = userInput.nextLine();
                 return journalInput;
@@ -143,16 +162,14 @@ public class App {
                 continue;
             }
         }
-        return null;
     }
 
     // EFFECT: prompts the user to enter the conference of the item they have read
     static String getConference(){
         String getConferenceString = "\nWhat conference is associated with the paper? (enter N/A if this does not apply)\n";
         System.out.println(getConferenceString);
-        int wrongInput = 1;
 
-        while(wrongInput == 1){
+        while(true){
             try {
                 String conferenceInput = userInput.nextLine();
                 return conferenceInput;
@@ -160,16 +177,14 @@ public class App {
                 continue;
             }
         }
-        return null;
     }
 
     // EFFECT: prompts the user to enter the news platform of the item they have read
     static String getNewsPlatform(){
         String getNewsPlatformString = "\nWhat news platform was this article published on? \n";
         System.out.println(getNewsPlatformString);
-        int wrongInput = 1;
 
-        while(wrongInput == 1){
+        while(true){
             try {
                 String newsPlatformInput = userInput.nextLine();
                 return newsPlatformInput;
@@ -177,16 +192,14 @@ public class App {
                 continue;
             }
         }
-        return null;
     }
 
     // EFFECT: prompts the user to enter the url of the item they have read
     static URL getURL(){
         String getURL = "\nPlease enter the link for this article. \n";
         System.out.println(getURL);
-        int wrongInput = 1;
 
-        while(wrongInput == 1){
+        while(true){
             try {
                 URL urlInput = new URL(userInput.nextLine());
                 return urlInput;
@@ -194,28 +207,29 @@ public class App {
                 continue;
             }
         }
-        return null;
     }
 
     // EFFECT: prompts the user to enter the article of the item they have read
     static ReadingItem getArticle(){
+        // TODO
         return null;
     }
 
     // EFFECT: prompts the user to enter the paper of the item they have read
     static ReadingItem getPaper(){
+        // TODO
         return null;
     }
 
     // EFFECT:  guides the user entering the details of the Non Fiction Book they are logging 
     static ReadingItem getNonFictionBook(){
+        // TODO
         return null;
     }
 
     // EFFECT: guides the user entering the details of the Fictional Book they are logging 
     static ReadingItem getFictionBook(){
-
-
+        // TODO
         return null;
     }
 
@@ -228,9 +242,7 @@ public class App {
 
         System.out.println(bookTypeMenu);
 
-        int incorrectInput = 1;
-
-        while (incorrectInput == 1) {
+        while (true) {
             try {
                 int readingItemSelection = userInput.nextInt();
                 switch (readingItemSelection) {
@@ -248,18 +260,17 @@ public class App {
                 System.out.println(bookTypeMenu);
             }
         }
-
-        return null;
     }
 
     // EFFECT: guides the user through creating a new reading log entry 
     static LogEntry newEntry(){
+        // TODO
         return null;
     }
 
     // EFFECT: 
     static void viewLog(){
-
+        // TODO
     }
 
 
@@ -274,6 +285,8 @@ public class App {
             default:
                 break;
         }
+
+        // TODO - finish implementing
 
     }
 
