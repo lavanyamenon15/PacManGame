@@ -1,17 +1,19 @@
 public enum Topic{
-    SELF_HELP,
-    TECHNOLOGY, 
-    PHILOSOPHY,
-    RELIGION,
-    POLITICS,
-    INTERNATIONAL_RELATIONS,
-    COMPUTER_SCIENCE,
-    LLM,
-    ALGORITHMS,
-    MACHINE_LEARNING,
+    Self_Help,
+    Technology, 
+    Philosophy,
+    Religion,
+    Politics,
+    International_Relations,
+    Computer_Science,
+    LLMs,
+    Algorithms,
+    Machine_Learning,
     AI,
-    MEMOIR,
-    BIOGRAPHY,
-    AUTOBIOGRAPHY
+    Memoir,
+    Biography,
+    Autobiography,
+    Sports,
+    Activism
 }
 

@@ -1,14 +1,14 @@
 public enum Genre {
-    FANTASY,
-    HISTORICAL_FICTION,
-    LITERARY_FICTION,
-    DRAMA,
-    YOUNG_ADULT,
-    CLASSIC,
-    ROMANCE,
-    THRILLER,
-    COMEDY,
-    POETRY,
-    MYSTERY,
-    SCIENCE_FICTION
+    Fantasy,
+    Historical_Fiction,
+    Literary_Fiction,
+    Drama,
+    Young_Adult,
+    Classic,
+    Romance,
+    Thriller,
+    Comedy,
+    Poetry,
+    Mystery,
+    Science_Fiction
 }

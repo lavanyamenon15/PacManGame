@@ -16,7 +16,7 @@ public class NonFictionBook extends ReadingItem{
 
     @Override
     public String getSpecificInformation() {
-        String topicString = "Date Published : " + getTopic() + "\n";
+        String topicString = "Topic : " + getTopic() + "\n";
         return topicString;
     }
 }

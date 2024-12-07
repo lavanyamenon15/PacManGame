@@ -6,7 +6,7 @@ public class FictionBook extends ReadingItem{
     private Genre genre;
     
     public FictionBook(String title, ArrayList<Author> authors, String synopsis, Date datePublished, Genre genre) {
-        super(title, authors,synopsis, datePublished);
+        super(title, authors, synopsis, datePublished);
         this.genre = genre;
     }
 
@@ -16,7 +16,7 @@ public class FictionBook extends ReadingItem{
 
     @Override
     public String getSpecificInformation() {
-        String genreString = "Date Published : " + this.genre.toString() + "\n";
+        String genreString = "Genre : " + this.genre.toString() + "\n";
         return genreString;
     }
 }
