@@ -1,4 +1,5 @@
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -128,7 +129,9 @@ public class App {
                 int month = Integer.parseInt(dateInput.substring(5,7));
                 int day = Integer.parseInt(dateInput.substring(8));
                 // userInput.nextLine();
-                return new Date(year, month, day);
+                // GregorianCalendar(year + 1900, month, day)
+
+                return new SimpleDateFormat("yyyy-MM-dd").parse(dateInput);
             } catch (Exception e) {
                 userInput.nextLine();
                 continue;
