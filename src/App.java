@@ -31,6 +31,7 @@ public class App {
         while (true){
             try {
                 int menuSelection = userInput.nextInt();
+                userInput.nextLine();
 
                 if(menuSelection == 1 || menuSelection == 2){
                     System.out.println("New Entry");
@@ -53,33 +54,32 @@ public class App {
     static String getTitle(String readingItemType){
         String getTitleString = "\nWhat is the title of the " + readingItemType + "? \n";
         System.out.println(getTitleString);
-        int wrongInput = 1;
 
-        while(wrongInput == 1){
+        while(true){
             try {
                 String titleInput = userInput.nextLine();
                 return titleInput;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
-
-        return null;
     }
 
     // EFFECT: prompts the user to enter the authors of the item they have read
     static ArrayList<Author> getAuthors(String readingItemType){
-        String howManyAuthors = "How many authors are there for the " + readingItemType + "?";
+        String howManyAuthors = "\nHow many authors are there for the " + readingItemType + "?";
         System.out.println(howManyAuthors);
         ArrayList<Author> authors = new ArrayList<>();
         int numAuthors;
 
         while(true){
             try {
-                numAuthors = userInput.nextInt();
+                numAuthors = Integer.parseInt(userInput.nextLine());
                 break;
             } catch (Exception e) {
                 System.out.println("\n\n !! Try again: Please enter a number !! \n\n");
+                userInput.nextLine();
                 continue;
             }
         }
@@ -87,12 +87,13 @@ public class App {
         while(true) {
             try {
                 for(int i = 1; i <= numAuthors; i++) {
-                    String i_thAuthorName = "What is the name of Author #" + i;
-                    System.out.println(i_thAuthorName);
+                    System.out.println("\nWhat is the name of Author #" + i + "\n");
+                    String i_thAuthorName = userInput.nextLine();
                     authors.add(new Author(i_thAuthorName));
                 }
                 return authors;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -108,6 +109,7 @@ public class App {
                 String synopsisInput = userInput.nextLine();
                 return synopsisInput;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -116,7 +118,7 @@ public class App {
     // EFFECT: prompts the user to enter the date the item they have read was published
     @SuppressWarnings("deprecation")
     static Date getDatePublished(String readingItemType){
-        String getDateString = "\n What is the Date the " + readingItemType + " was published? (please enter your answer in YYYY-MM-DD format)\n";
+        String getDateString = "\nWhat is the Date the " + readingItemType + " was published? (please enter your answer in YYYY-MM-DD format)\n";
         System.out.println(getDateString);
 
         while(true){
@@ -125,8 +127,10 @@ public class App {
                 int year = Integer.parseInt(dateInput.substring(0,4));
                 int month = Integer.parseInt(dateInput.substring(5,7));
                 int day = Integer.parseInt(dateInput.substring(8));
+                // userInput.nextLine();
                 return new Date(year, month, day);
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -138,29 +142,69 @@ public class App {
         "Please enter a list of numbers corresponding to the list below, separated by commas. (ex. 1,3,6,10) \n" +
         "1. Fantasy\n" + 
         "2. Historical Fiction\n" +
-        "3. Literary_Fiction\n" +
+        "3. Literary Fiction\n" +
         "4. Drama\n" +
-        "5. Young_Adult\n" +
+        "5. Young Adult\n" +
         "6. Classic\n" +
         "7. Romance\n" +
         "8. Thriller\n" +
         "9. Comedy\n" +
         "10. Poetry\n" +
         "11. Mystery\n" +
-        "12. Science_Fiction";
+        "12. Science Fiction";
 
         System.out.println(getGenreString);
 
         while(true){
             try {
                 String genreInput = userInput.nextLine();
-                String[] genreList = genreInput.split(",");
+                String[] genreList = genreInput.split("[,]");
                 ArrayList<Genre> genreListEnums = new ArrayList<>();
                 for (String genre : genreList) {
-                    genreListEnums.add(Genre.valueOf(genre));
+                    switch (genre) {
+                        case "1":
+                            genreListEnums.add(Genre.Fantasy);
+                            break;
+                        case "2":
+                            genreListEnums.add(Genre.Historical_Fiction);
+                            break;
+                        case "3":
+                            genreListEnums.add(Genre.Literary_Fiction);
+                            break;
+                        case "4":
+                            genreListEnums.add(Genre.Drama);
+                            break;
+                        case "5":
+                            genreListEnums.add(Genre.Young_Adult);
+                            break;
+                        case "6":
+                            genreListEnums.add(Genre.Classic);
+                            break;
+                        case "7":
+                            genreListEnums.add(Genre.Romance);
+                            break;
+                        case "8":
+                            genreListEnums.add(Genre.Thriller);
+                            break;
+                        case "9":
+                            genreListEnums.add(Genre.Comedy);
+                            break;
+                        case "10":
+                            genreListEnums.add(Genre.Poetry);
+                            break;
+                        case "11":
+                            genreListEnums.add(Genre.Mystery);
+                            break;
+                        case "12":
+                            genreListEnums.add(Genre.Science_Fiction);
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 return genreListEnums;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -170,16 +214,16 @@ public class App {
     static ArrayList<Topic> getTopic(String readingItemType){
         String getTopicString = "\n What are the topics of the " + readingItemType + "?" +  
         "Please enter a list of numbers corresponding to the list below, separated by commas. (ex. 1,3,6,10) \n" +
-        "1. Self_Help\n" + 
+        "1. Self Help\n" + 
         "2. Technology\n" +
         "3. Philosophy\n" +
         "4. Religion\n" +
         "5. Politics\n" +
-        "6. International_Relations\n" +
-        "7. Computer_Science\n" +
+        "6. International Relations\n" +
+        "7. Computer Science\n" +
         "8. LLMs\n" +
         "9. Algorithms\n" +
-        "10. Machine_Learning\n" +
+        "10. Machine Learning\n" +
         "11. AI\n" +
         "12. Memoir\n" + 
         "13. Biography\n" +
@@ -195,10 +239,63 @@ public class App {
                 String[] topicList = topicInput.split(",");
                 ArrayList<Topic> topicListEnums = new ArrayList<>();
                 for (String topic : topicList) {
-                    topicListEnums.add(Topic.valueOf(topic));
+                        switch (topic) {
+                            case "1":
+                                topicListEnums.add(Topic.Self_Help);
+                                break;
+                            case "2":
+                                topicListEnums.add(Topic.Technology);
+                                break;
+                            case "3":
+                                topicListEnums.add(Topic.Philosophy);
+                                break;
+                            case "4":
+                                topicListEnums.add(Topic.Religion);
+                                break;
+                            case "5":
+                                topicListEnums.add(Topic.Politics);
+                                break;
+                            case "6":
+                                topicListEnums.add(Topic.International_Relations);
+                                break;
+                            case "7":
+                                topicListEnums.add(Topic.Computer_Science);
+                                break;
+                            case "8":
+                                topicListEnums.add(Topic.LLMs);
+                                break;
+                            case "9":
+                                topicListEnums.add(Topic.Algorithms);
+                                break;
+                            case "10":
+                                topicListEnums.add(Topic.Machine_Learning);
+                                break;
+                            case "11":
+                                topicListEnums.add(Topic.AI);
+                                break;
+                            case "12":
+                                topicListEnums.add(Topic.Memoir);
+                                break;
+                            case "13":
+                                topicListEnums.add(Topic.Biography);
+                                break;
+                            case "14":
+                                topicListEnums.add(Topic.Autobiography);
+                                break;
+                            case "15":
+                                topicListEnums.add(Topic.Sports);
+                                break;
+                            case "16":
+                                topicListEnums.add(Topic.Activism);
+                                break;
+                            default:
+                                break;
+                    }
                 }
+                userInput.nextLine();
                 return topicListEnums;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -212,8 +309,10 @@ public class App {
         while(true){
             try {
                 String DOIInput = userInput.nextLine();
+                userInput.nextLine();
                 return DOIInput;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -228,8 +327,10 @@ public class App {
         while(true){
             try {
                 String journalInput = userInput.nextLine();
+                userInput.nextLine();
                 return journalInput;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -243,8 +344,10 @@ public class App {
         while(true){
             try {
                 String conferenceInput = userInput.nextLine();
+                userInput.nextLine();
                 return conferenceInput;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -258,8 +361,10 @@ public class App {
         while(true){
             try {
                 String newsPlatformInput = userInput.nextLine();
+                userInput.nextLine();
                 return newsPlatformInput;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -273,8 +378,10 @@ public class App {
         while(true){
             try {
                 URL urlInput = new URL(userInput.nextLine());
+                userInput.nextLine();
                 return urlInput;
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
@@ -293,15 +400,17 @@ public class App {
                     return false;
                 } else {
                     System.out.println("\n\n !! Try again: Please answer with Y or N !! \n\n");
+                    userInput.nextLine();
                 }
             } catch (Exception e) {
+                userInput.nextLine();
                 continue;
             }
         }
     }
 
     // EFFECT: prompts the user to enter the article of the item they have read
-    static Article getArticle(Article article){
+    static Article getArticleAttributes(Article article){
         String newsPlatform = getNewsPlatform();
         URL url = getURL();
         article.setNewsPlatform(newsPlatform);
@@ -310,7 +419,7 @@ public class App {
         return article;
     }
 
-    // EFFECT: prompts the user to enter the paper of the item they have read
+    // EFFECT: prompts the user to enter the paper details of the item they have read
     static Paper getPaperAttributes(Paper paper){
         String doi = getDOI();
         String journal; 
@@ -332,14 +441,16 @@ public class App {
 
     // EFFECT: prompts the user to select the type of nonfiction reading item they want to log 
     static String getTypeOfNonFiction() {
-        System.out.println("What type of non fiction reading item would you like to log? (please enter a number corresponding to an option below)\n" +
+        String typeOfNonFiction = "What type of non fiction reading item would you like to log? (please enter a number corresponding to an option below)\n" +
         "1. Non Fiction Book\n"+
         "2. Academic Paper\n" +
-        "3. Article\n");
+        "3. Article\n";
+        System.out.println(typeOfNonFiction);
 
         while(true){
             try {
                 int typeOfNonfiction = userInput.nextInt();
+                userInput.nextLine();
                 switch (typeOfNonfiction) {
                     case 1:
                         return "book";
@@ -349,9 +460,12 @@ public class App {
                         return "article";
                     default:
                         System.out.println("\n\n !! Try again: Please enter a number listed above !! \n\n");
+                        System.out.println(typeOfNonFiction);
                 }
             } catch (Exception e) {
                 System.out.println("\n\n !! Try again: Please enter a number !! \n\n");
+                System.out.println(typeOfNonFiction);
+                userInput.nextLine();
                 continue;
             }
         }
@@ -372,7 +486,7 @@ public class App {
             return paper;
         } else if (readingItemType == "article") {
             Article article = new Article(title, authors, synopsis, datePublished, topic);
-            article = getArticle(article);
+            article = getArticleAttributes(article);
             return article;
         } else {
             return new NonFictionBook(title, authors, synopsis, datePublished, topic);
@@ -403,6 +517,7 @@ public class App {
         while (true) {
             try {
                 int readingItemSelection = userInput.nextInt();
+                userInput.nextLine();
                 switch (readingItemSelection) {
                     case 1:
                         return getFictionBook();
@@ -438,7 +553,7 @@ public class App {
         int menuSelection = displayMenu();
         switch (menuSelection) {
             case 1:
-                System.out.println(getReadingItem().toString());
+                System.out.println(getReadingItem().getReadingItemInformation());
                 break;
             default:
                 break;

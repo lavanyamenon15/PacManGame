@@ -50,10 +50,14 @@ public abstract class ReadingItem {
         this.synopsis = updatedSynopsis;
     }
 
-    public ArrayList<String>  getAuthorsNames() {
-        ArrayList<String> names = new ArrayList<>();
-        for (int i = 0; i < authors.size() - 1; i++) {
-            names.add(authors.get(i).getName());
+    public String  getAuthorsNames() {
+        String names = "";
+        for (int i = 0; i < authors.size(); i++) {
+            if(i == 0) {
+                names += authors.get(i).getName();
+            } else {
+                names += ", " + authors.get(i).getName();
+            }
         }
         return names;
     }
@@ -64,7 +68,7 @@ public abstract class ReadingItem {
 
     public String getReadingItemInformation() {
         String titleString = "Book Title : " + getTitle() + "\n";
-        String authorString = "Authors : " + getAuthorsNames() + "\n";
+        String authorString = "Author(s) : " + getAuthorsNames() + "\n";
         String synopsisString = "Synopsis : " + getSynopsis();
         String datePublishedString = "Date Published : " + getDatePublished().toString() + "\n";
         String specificInformation = getSpecificInformation();
